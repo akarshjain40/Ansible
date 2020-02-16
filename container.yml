@@ -1,0 +1,31 @@
+---
+- hosts: server
+  become: true
+  tasks:
+    - name: Docker repo
+      copy:
+        src: docker-ce.repo
+        dest: /etc/yum.repos.d
+    
+    - name: Docker install
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+   
+    - service:
+        name: docker
+        enabled: yes
+        state: started 
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Deploying a Conatiner
+      docker_container:
+        name: nginx
+        image: nginx:1.17
+        state: started
