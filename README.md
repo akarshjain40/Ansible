@@ -6,6 +6,8 @@ There are two ansible files.
 
 Ansible hosts file contain multiple servers so that container is deployed across servers.
 
+Add the hosts file in /etc/ansible/hosts
+
 Make sure python intepreter is correctly configured in host and remote machine and also selinux context.
 
 I have used CentOS 7 as a remote host.
